@@ -13,19 +13,19 @@
 */
 package nl.kb.magicfile;
 
-import org.apache.commons.io.IOUtils;
-
-import java.io.IOException;
-import java.io.FileNotFoundException;
 import java.io.File;
-import java.io.InputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.io.IOUtils;
+
 
 public final class MagicFile {
-    private static final String LIBRARY_NAME = "libmagicjbind.so";
+    private static final String LIBRARY_NAME = "magicjbind";
     private static final int MAX_CHECK_SIZE = 4096;
 
     private byte[] currentBytes = new byte[MAX_CHECK_SIZE];
@@ -33,17 +33,7 @@ public final class MagicFile {
     private File currentFile = null;
 
     static {
-        InputStream is = MagicFile.class.getResourceAsStream("/" + LIBRARY_NAME);
-        try {
-            File temp = File.createTempFile(LIBRARY_NAME, "");
-            FileOutputStream fos = new FileOutputStream(temp);
-            fos.write(IOUtils.toByteArray(is));
-            fos.close();
-            is.close();
-            System.load(temp.getAbsolutePath());
-        } catch(IOException e) {
-            throw new RuntimeException(e);
-        }
+        System.loadLibrary(LIBRARY_NAME);
     }
 
 
@@ -71,7 +61,7 @@ public final class MagicFile {
 
     public static String characterize(Check check, File file) throws FileNotFoundException {
         if(file == null) {
-            throw new NullPointerException("No file specified");
+            throw new IllegalArgumentException("No file specified (null).");
         } else if(!file.exists() || !file.canRead()) {
             throw new FileNotFoundException("File cannot be read: " + file.getAbsolutePath());
         }
@@ -158,8 +148,8 @@ public final class MagicFile {
                 System.out.println("Encoding: " + checkEncoding(new File(args[0])));
             } catch(FileNotFoundException e) {
                 e.printStackTrace();
-            } catch(IOException e) {
-                e.printStackTrace();
+//          } catch(IOException e) {
+//              e.printStackTrace();
             }
         } else {
             System.out.println("First argument should be the path to an existing filename.");

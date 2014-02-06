@@ -1,25 +1,19 @@
-all: package
+SRC_DIR = src/csource
+LIB_DIR = lib
+LIB_SRC = $(SRC_DIR)/nl_kb_magicfile_MagicFile.cc
+LIB_TARGET = $(LIB_DIR)/libmagicjbind.so
 
-clean:
-	rm -f src/main/resources/libmagicjbind.so
-	mvn clean
+CPPFLAGS += -I$(JAVA_HOME)/include
+# TODO: MinGW:
+CPPFLAGS += -I$(JAVA_HOME)/include/linux
+LDFLAGS += -shared
+TARGET_ARCH += -fPIC
+LDLIBS += -lmagic
 
-compile:
-	mkdir -p src/main/resources
-	g++ -shared -o src/main/resources/libmagicjbind.so -I$(JAVA_HOME)/include/ -I$(JAVA_HOME)/include/linux/ -lmagic src/csource/nl_kb_magicfile_MagicFile.cc
+# TODO: System dependent value.
+JAVA_HOME ?= /usr/lib/jvm/java-7-oracle
 
-test: compile
-	mvn test;
+all: $(LIB_TARGET)
 
-package: compile
-	mvn package
-
-standalone: package
-	mvn assembly:single
-
-testrun: package
-	mvn exec:java -Dexec.mainClass="nl.kb.magicfile.MagicFile" -Dexec.args="libmagicjbind.so"
-
-install: package
-	mvn install
-
+$(LIB_TARGET): $(LIB_SRC)
+	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH) $^ $(LDLIBS) -o $@

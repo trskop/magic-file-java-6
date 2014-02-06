@@ -129,6 +129,3 @@ JNIEXPORT jstring JNICALL Java_nl_kb_magicfile_MagicFile_checkEncodingStream(JNI
 	} else
 	    return env->NewStringUTF(checkStream(MAGIC_MIME_ENCODING, pointer, len));
 }
-
-
-int main() { }
