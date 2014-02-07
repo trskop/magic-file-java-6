@@ -15,32 +15,32 @@ for [libmagic][] and `build.xml` for building Java project using Apache Ant.
 
 These are the steps necessary for successful build:
 
-- Download [Apache commons-io][] from its [download page
-  ][Apache commons-io download], unpack it and put `.jar` files in to the `lib`
-  directory. It will work out-of-the-box only with version 2.4, for other
-  versions please modify `nbproject/project.properties` appropriately.
+Download [Apache commons-io][] from its [download page
+][Apache commons-io download], unpack it and put `.jar` files in to the `lib`
+directory. It will work out-of-the-box only with version 2.4, for other
+versions please modify `nbproject/project.properties` appropriately.
 
-- On Debian/Ubuntu install `libmagic-dev` package:
+On Debian/Ubuntu install `libmagic-dev` package:
 
     $ sudo apt-get install libmagic-dev
 
-- Make sure your `JAVA_HOME` environment variable is exported with correct path
-  to your Java installation, e.g. like this:
+Make sure your `JAVA_HOME` environment variable is exported with correct path
+to your Java installation, e.g. like this:
 
     $ # Ubuntu 12.10 with oracle-java7-installer package installed
     $ export JAVA_HOME=/usr/lib/jvm/java-7-oracle
 
-  Other option is to pass `JAVA_HOME` directly to make.
+Other option is to pass `JAVA_HOME` directly to make.
 
-- Run `make`:
+Run `make`:
 
     $ make
 
-  Example for directly passed `JAVA_HOME`:
+Example for directly passed `JAVA_HOME`:
 
     $ make JAVA_HOME=/usr/lib/jvm/java-7-oracle
 
-- Run Ant:
+Run Ant:
 
     $ ant
 
