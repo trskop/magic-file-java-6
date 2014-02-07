@@ -11,7 +11,7 @@ Compiling
 ---------
 
 Provided `Makefile` is for compiling native code that provides JNI interface
-for `libmagic` and `build.xml` for building Java project using Apache Ant.
+for [libmagic][] and `build.xml` for building Java project using Apache Ant.
 
 These are the steps necessary for successful build:
 
@@ -40,7 +40,7 @@ These are the steps necessary for successful build:
 
     $ make JAVA_HOME=/usr/lib/jvm/java-7-oracle
 
-- Run `ant`:
+- Run Ant:
 
     $ ant
 
@@ -52,5 +52,5 @@ These are the steps necessary for successful build:
   http://commons.apache.org/io/download_io.cgi
   "Download page for Apache commons-io"
 [libmagic]:
-  http://linux.die.net/man/3/libmagic
+  http://swoolley.org/man.cgi/3/libmagic
   "Manual page for libmagic that describes its API"
