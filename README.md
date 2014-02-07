@@ -12,8 +12,7 @@ Compiling
 
 Provided `Makefile` is for compiling native code that provides JNI interface
 for [libmagic][] and `build.xml` for building Java project using Apache Ant.
-
-These are the steps necessary for successful build:
+Following are the necessary steps for successful build.
 
 Download [Apache commons-io][] from its [download page
 ][Apache commons-io download], unpack it and put `.jar` files in to the `lib`
@@ -25,22 +24,17 @@ On Debian/Ubuntu install `libmagic-dev` package:
     $ sudo apt-get install libmagic-dev
 
 Make sure your `JAVA_HOME` environment variable is exported with correct path
-to your Java installation, e.g. like this:
+to your Java installation and run `make`, e.g. like this:
 
     $ # Ubuntu 12.10 with oracle-java7-installer package installed
     $ export JAVA_HOME=/usr/lib/jvm/java-7-oracle
-
-Other option is to pass `JAVA_HOME` directly to make.
-
-Run `make`:
-
     $ make
 
-Example for directly passed `JAVA_HOME`:
+Other option is to pass `JAVA_HOME` directly to `make`:
 
     $ make JAVA_HOME=/usr/lib/jvm/java-7-oracle
 
-Run Ant:
+Now run Ant:
 
     $ ant
 
